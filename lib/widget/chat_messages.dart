@@ -12,13 +12,15 @@ class ChatMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     final authUser = FirebaseAuth.instance.currentUser!;
 
+    if (documentId.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection('matches').doc(documentId).collection('chat').orderBy('createdAt', descending: true).snapshots(),
       builder: (context, chatSnapshots) {
         if (chatSnapshots.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (!chatSnapshots.hasData || chatSnapshots.data!.docs.isEmpty) {

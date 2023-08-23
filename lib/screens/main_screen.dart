@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:work_match/screens/navigator_drawer.dart';
 import 'package:work_match/screens/search.dart';
 import 'package:work_match/screens/messages.dart';
 import 'package:work_match/screens/offer.dart';
@@ -34,12 +35,14 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String activeTitle = 'Wotch';
     Widget activePageSelectIcon = IconButton(
       onPressed: () {},
       icon: Icon(Icons.hourglass_empty_sharp, color: Theme.of(context).colorScheme.primary),
     );
 
     if (_selectedPageIndex == 0) {
+      activeTitle = 'Profil';
       activePageSelectIcon = IconButton(
         onPressed: () {
           FirebaseAuth.instance.signOut();
@@ -53,6 +56,7 @@ class _MainScreenState extends State<MainScreen> {
     }
 
     if (_selectedPageIndex == 1) {
+      activeTitle = 'Wotch';
       activePageSelectIcon = IconButton(
         onPressed: () {},
         icon: Icon(
@@ -63,6 +67,7 @@ class _MainScreenState extends State<MainScreen> {
       );
     }
     if (_selectedPageIndex == 2) {
+      activeTitle = 'Oferty';
       activePageSelectIcon = IconButton(
         onPressed: () {},
         icon: Icon(
@@ -73,6 +78,7 @@ class _MainScreenState extends State<MainScreen> {
       );
     }
     if (_selectedPageIndex == 3) {
+      activeTitle = 'Wiadomości';
       activePageSelectIcon = IconButton(
         onPressed: () {},
         icon: Icon(
@@ -85,9 +91,23 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wotch', style: TextStyle(fontSize: 28)),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              color: Theme.of(context).colorScheme.primary,
+              iconSize: 32,
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        title: Text(activeTitle, style: const TextStyle(fontSize: 28)),
         actions: [activePageSelectIcon],
       ),
+      drawer: const NavigatorDrawer(),
       body: PageView(
         physics: _selectedPageIndex == 1 ? const NeverScrollableScrollPhysics() : null,
         controller: pageController,
