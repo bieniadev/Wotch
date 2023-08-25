@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
                 Text(
                   snapshot.data!.data()!['firstname'],
                   style: const TextStyle(
-                    fontSize: 28,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -41,14 +41,14 @@ class ProfileScreen extends StatelessWidget {
                 Text(
                   snapshot.data!.data()!['surname'],
                   style: const TextStyle(
-                    fontSize: 28,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Text(
                   snapshot.data!.data()!['age'],
-                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ],
             ),

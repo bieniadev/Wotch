@@ -42,8 +42,8 @@ class _OfferCardState extends State<OfferCard> {
                         Wrap(
                           direction: Axis.vertical,
                           children: [
-                            Text(userData['firstname'], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                            Text('${userData['surname']}, ${userData['age']}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                            Text(userData['firstname'], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                            Text('${userData['surname']}, ${userData['age']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                           ],
                         ),
                         OfferCardCategories(documentId: widget.documentId),
